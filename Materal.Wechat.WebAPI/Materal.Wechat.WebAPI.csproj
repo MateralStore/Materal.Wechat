@@ -1,9 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
-
+	<Import Project="../Common.props" />
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Materal.MergeBlock.AccessLog" />
+		<PackageReference Include="Materal.MergeBlock.Cors" />
+		<PackageReference Include="Materal.MergeBlock.ExceptionInterceptor" />
+		<PackageReference Include="Materal.MergeBlock.Logger" />
+		<PackageReference Include="Materal.MergeBlock.Web" />
+		<PackageReference Include="Materal.MergeBlock.Swagger" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Materal.Wechat.Application\Materal.Wechat.Application.csproj" />
+	</ItemGroup>
 </Project>

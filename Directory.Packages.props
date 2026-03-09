@@ -12,5 +12,6 @@
     <PackageVersion Include="Materal.MergeBlock.Web" Version="1.4.21" />
     <PackageVersion Include="Materal.MergeBlock.Web.Abstractions" Version="1.4.21" />
     <PackageVersion Include="Materal.MergeBlock.Abstractions" Version="1.4.21" />
+    <PackageVersion Include="SKIT.FlurlHttpClient.Wechat.Api" Version="3.14.0" />
   </ItemGroup>
 </Project>

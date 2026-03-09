@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="../MergeBlockApplicationLibrary.props" />
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Materal.MergeBlock.Abstractions" />
+		<PackageReference Include="Materal.MergeBlock.Authorization.Abstractions" />
+		<PackageReference Include="Materal.MergeBlock.Web.Abstractions" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Materal.MergeBlock.Wechat\Materal.MergeBlock.Wechat.csproj" />
+	</ItemGroup>
+</Project>

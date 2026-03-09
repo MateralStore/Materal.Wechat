@@ -13,5 +13,6 @@
     <File Path="README.md" />
   </Folder>
   <Project Path="Materal.MergeBlock.Wechat/Materal.MergeBlock.Wechat.csproj" />
+  <Project Path="Materal.Wechat.Application/Materal.Wechat.Application.csproj" Id="95fc3155-a455-494b-a773-5485daf877f8" />
   <Project Path="Materal.Wechat.WebAPI/Materal.Wechat.WebAPI.csproj" />
 </Solution>

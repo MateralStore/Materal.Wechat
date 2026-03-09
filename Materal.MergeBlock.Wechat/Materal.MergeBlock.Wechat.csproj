@@ -7,5 +7,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Materal.MergeBlock.Web.Abstractions" />
+		<PackageReference Include="SKIT.FlurlHttpClient.Wechat.Api" />
 	</ItemGroup>
 </Project>
