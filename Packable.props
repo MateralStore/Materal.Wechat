@@ -1,0 +1,31 @@
+<Project>
+	<Import Project="Common.props" />
+	<PropertyGroup>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)' == 'Release'">
+		<IsPackable>true</IsPackable>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageOutputPath>../../Packages</PackageOutputPath>
+		<Company>Materal</Company>
+		<Product>Materal</Product>
+		<Authors>Materal</Authors>
+		<Title>Materal</Title>
+		<NeutralLanguage>zh-CN</NeutralLanguage>
+		<PackageReleaseNotes>https://github.com/MateralCMX/Materal</PackageReleaseNotes>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<GitTagRegex>v*</GitTagRegex>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="GitInfo">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+	<ItemGroup Condition="'$(Configuration)' == 'Release'">
+		<None Include="../README.md" Pack="true" PackagePath="" />
+		<None Include="../LICENSE" Pack="true" PackagePath="" />
+		<None Include="../LICENSE_CN" Pack="true" PackagePath="" />
+	</ItemGroup>
+</Project>

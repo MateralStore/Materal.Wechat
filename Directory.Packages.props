@@ -1,0 +1,16 @@
+﻿<Project ToolsVersion="15.0">
+  <ItemGroup>
+    <PackageVersion Include="GitInfo" Version="3.6.0" />
+    <PackageVersion Include="Materal.Abstractions" Version="1.4.2" />
+    <PackageVersion Include="Materal.MergeBlock.AccessLog" Version="1.4.21" />
+    <PackageVersion Include="Materal.MergeBlock.Authorization" Version="1.4.17" />
+    <PackageVersion Include="Materal.MergeBlock.Authorization.Abstractions" Version="1.4.21" />
+    <PackageVersion Include="Materal.MergeBlock.Cors" Version="1.4.21" />
+    <PackageVersion Include="Materal.MergeBlock.ExceptionInterceptor" Version="1.4.21" />
+    <PackageVersion Include="Materal.MergeBlock.Logger" Version="1.4.21" />
+    <PackageVersion Include="Materal.MergeBlock.Swagger" Version="1.4.21" />
+    <PackageVersion Include="Materal.MergeBlock.Web" Version="1.4.21" />
+    <PackageVersion Include="Materal.MergeBlock.Web.Abstractions" Version="1.4.21" />
+    <PackageVersion Include="Materal.MergeBlock.Abstractions" Version="1.4.21" />
+  </ItemGroup>
+</Project>
