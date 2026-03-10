@@ -3,6 +3,8 @@ import { useSearchParams } from 'react-router-dom'
 import axios from 'axios'
 import './WechatAuth.css'
 
+const apiBaseUrl = import.meta.env.VITE_API_TARGET || ''
+
 interface UserAccessTokenDTO {
   AccessToken: string
   ExpiresIn: number
@@ -18,18 +20,26 @@ interface ResultModel {
   Data: UserAccessTokenDTO | null
 }
 
+const STORAGE_KEY_APPID = 'wechat_appid'
+const STORAGE_KEY_AUTH = 'wechat_auth'
+
+const getStoredAuth = (): ResultModel | null => {
+  const stored = localStorage.getItem(STORAGE_KEY_AUTH)
+  return stored ? JSON.parse(stored) : null
+}
+
 const WechatAuth: React.FC = () => {
   const [searchParams] = useSearchParams()
   const codeFromUrl = searchParams.get('code')
 
-  const defaultRedirectUri = `${window.location.origin}/test/wechat-auth`
+  const defaultRedirectUri = `${window.location.origin}/WechatTest/test/wechat-auth`
 
-  const [appid, setAppid] = useState('')
+  const [appid, setAppid] = useState(() => localStorage.getItem(STORAGE_KEY_APPID) || '')
   const [redirectUri, setRedirectUri] = useState(defaultRedirectUri)
   const [scope, setScope] = useState<'snsapi_base' | 'snsapi_userinfo'>('snsapi_base')
   const [code, setCode] = useState(() => codeFromUrl || '')
   const [loading, setLoading] = useState(false)
-  const [result, setResult] = useState<ResultModel | null>(null)
+  const [result, setResult] = useState<ResultModel | null>(() => getStoredAuth())
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
@@ -37,6 +47,18 @@ const WechatAuth: React.FC = () => {
       handleGetToken(codeFromUrl)
     }
   }, [codeFromUrl])
+
+  useEffect(() => {
+    if (appid.trim()) {
+      localStorage.setItem(STORAGE_KEY_APPID, appid)
+    }
+  }, [appid])
+
+  useEffect(() => {
+    if (result && result.ResultType === 0 && result.Data) {
+      localStorage.setItem(STORAGE_KEY_AUTH, JSON.stringify(result))
+    }
+  }, [result])
 
   const handleAuth = () => {
     if (!appid.trim()) {
@@ -50,7 +72,6 @@ const WechatAuth: React.FC = () => {
 
     const encodedRedirectUri = encodeURIComponent(redirectUri)
     const authUrl = `https://open.weixin.qq.com/connect/oauth2/authorize?appid=${appid}&redirect_uri=${encodedRedirectUri}&response_type=code&scope=${scope}#wechat_redirect`
-
     window.location.href = authUrl
   }
 
@@ -65,7 +86,7 @@ const WechatAuth: React.FC = () => {
     setResult(null)
 
     try {
-      const response = await axios.get<ResultModel>('/WeChatAPI/WechatUser/GetUserAccessToken', {
+      const response = await axios.get<ResultModel>(`${apiBaseUrl}/WeChatAPI/WechatUser/GetUserAccessToken`, {
         params: { code: codeValue }
       })
       setResult(response.data)

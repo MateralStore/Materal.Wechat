@@ -29,5 +29,5 @@ public class UserAccessTokenDTO
     /// <summary>
     /// 用户全局标识
     /// </summary>
-    public string UnionID { get; set; } = string.Empty;
+    public string? UnionID { get; set; } = string.Empty;
 }

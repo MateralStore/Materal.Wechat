@@ -1,6 +1,5 @@
 ﻿using Materal.Extensions.DependencyInjection;
 using Materal.MergeBlock.Wechat.DTO;
-using Materal.Utils.AutoMapper;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using SKIT.FlurlHttpClient.Wechat.Api;
@@ -11,7 +10,7 @@ namespace Materal.MergeBlock.Wechat.Services;
 /// <summary>
 /// 微信服务
 /// </summary>
-public class WechatServiceImpl(IOptionsMonitor<ApplicationConfig> config, IMapper mapper, IMemoryCache cache) : IWechatService, ITransientDependency<IWechatService>
+public class WechatServiceImpl(IOptionsMonitor<ApplicationConfig> config, IMemoryCache cache) : IWechatService, ITransientDependency<IWechatService>
 {
     /// <inheritdoc/>
     public async Task<UserAccessTokenDTO> GetUserAccessTokenAsync(string code, string configKey = "Default")
@@ -22,7 +21,15 @@ public class WechatServiceImpl(IOptionsMonitor<ApplicationConfig> config, IMappe
             Code = code
         });
         if (!response.IsSuccessful()) throw new WechatModuleException(response);
-        UserAccessTokenDTO result = mapper.Map<UserAccessTokenDTO>(response);
+        UserAccessTokenDTO result = new()
+        {
+            AccessToken = response.AccessToken,
+            ExpiresIn = response.ExpiresIn,
+            OpenID = response.OpenId,
+            RefreshToken = response.RefreshToken,
+            Scope = response.Scope,
+            UnionID = response.UnionId
+        };
         return result;
     }
 
