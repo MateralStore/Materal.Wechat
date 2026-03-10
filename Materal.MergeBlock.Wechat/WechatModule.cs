@@ -5,4 +5,9 @@ namespace Materal.MergeBlock.Wechat;
 /// </summary>
 public class WechatModule() : MergeBlockModule("微信模块")
 {
+    /// <inheritdoc/>
+    public override void OnConfigureServices(ServiceConfigurationContext context)
+    {
+        context.Services.AddMemoryCache();
+    }
 }
