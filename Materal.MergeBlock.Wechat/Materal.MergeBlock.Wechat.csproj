@@ -8,5 +8,6 @@
 	<ItemGroup>
 		<PackageReference Include="Materal.MergeBlock.Web.Abstractions" />
 		<PackageReference Include="SKIT.FlurlHttpClient.Wechat.Api" />
+		<PackageReference Include="SKIT.FlurlHttpClient.Wechat.TenpayV3" />
 	</ItemGroup>
 </Project>

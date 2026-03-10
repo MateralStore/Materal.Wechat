@@ -1,0 +1,16 @@
+.settings {
+  padding: 20px;
+}
+
+.info-section {
+  background: #f5f5f5;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.8;
+}
+
+.info-section p {
+  margin: 0;
+}

@@ -37,7 +37,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       proxy: {
-        '/WeChatAPI': {
+        '/WechatAPI': {
           target: env.VITE_API_TARGET,
           changeOrigin: true
         }

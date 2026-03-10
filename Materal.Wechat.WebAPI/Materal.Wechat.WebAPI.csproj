@@ -5,6 +5,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="Materal.MergeBlock.AccessLog" />
+		<PackageReference Include="Materal.MergeBlock.Consul" />
 		<PackageReference Include="Materal.MergeBlock.Cors" />
 		<PackageReference Include="Materal.MergeBlock.ExceptionInterceptor" />
 		<PackageReference Include="Materal.MergeBlock.Logger" />
@@ -13,5 +14,16 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Materal.Wechat.Application\Materal.Wechat.Application.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="apiclient_cert.pem">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="apiclient_key.pem">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	  <None Update="pub_key.pem">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 </Project>

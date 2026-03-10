@@ -10,7 +10,7 @@ namespace Materal.Wechat.Application.Controllers;
 /// </summary>
 /// <param name="wechatService"></param>
 [AllowAnonymous]
-public class WechatUserController(IWechatService wechatService) : WechatBaseController(wechatService)
+public class WechatUserController(IWechatService wechatService) : WechatBaseController
 {
     /// <summary>
     /// 获取用户AccessToken(OpenID也在这里获取)
@@ -20,7 +20,7 @@ public class WechatUserController(IWechatService wechatService) : WechatBaseCont
     [HttpGet]
     public async Task<ResultModel<UserAccessTokenDTO>> GetUserAccessTokenAsync([FromQuery] string code)
     {
-        UserAccessTokenDTO result = await WechatService.GetUserAccessTokenAsync(code);
+        UserAccessTokenDTO result = await wechatService.GetUserAccessTokenAsync(code);
         return ResultModel<UserAccessTokenDTO>.Success(result, "获取成功");
     }
 }

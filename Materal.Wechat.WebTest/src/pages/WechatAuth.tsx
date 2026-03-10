@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import axios from 'axios'
+import { getApiBaseUrl } from '../utils/api-config'
 import './WechatAuth.css'
-
-const apiBaseUrl = import.meta.env.VITE_API_TARGET || ''
 
 interface UserAccessTokenDTO {
   AccessToken: string
@@ -86,7 +85,7 @@ const WechatAuth: React.FC = () => {
     setResult(null)
 
     try {
-      const response = await axios.get<ResultModel>(`${apiBaseUrl}/WeChatAPI/WechatUser/GetUserAccessToken`, {
+      const response = await axios.get<ResultModel>(`${getApiBaseUrl()}/WechatAPI/WechatUser/GetUserAccessToken`, {
         params: { code: codeValue }
       })
       setResult(response.data)
