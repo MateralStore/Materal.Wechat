@@ -1,0 +1,39 @@
+name: Build and Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      - name: 设置 .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0'
+
+      - name: 还原 NuGet 包
+        run: dotnet restore Materal.Wechat.slnx
+
+      - name: 构建项目
+        run: dotnet build Materal.Wechat.slnx --configuration Release
+
+      - name: 发布到 NuGet
+        run: |
+          if [ -z "$(ls -A ../Packages/*.nupkg 2>/dev/null)" ]; then
+            echo "没有需要发布的包"
+            exit 0
+          fi
+          for nupkg in ../Packages/*.nupkg; do
+            echo "正在发布: $nupkg"
+            dotnet nuget push "$nupkg" \
+              --source https://api.nuget.org/v3/index.json \
+              --api-key ${{ secrets.NUGET_API_KEY }} \
+              --skip-duplicate
+          done
